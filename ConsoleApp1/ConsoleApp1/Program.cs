@@ -11,15 +11,15 @@ namespace ConsoleApp1
         {
             SqlConnection conect = new SqlConnection(ConfigurationManager.ConnectionStrings["cli"].ToString());
 
-            int id;
-            string name;
-            int phone;
 
             int num;
                 int z;
             bool x;
             do
             {
+            int id;
+            string name;
+            int phone;
                 Console.Write("1-Insert Data  ");
                 Console.Write("2-Show Data  ");
                 Console.Write("3-Delet Data  ");
@@ -53,7 +53,7 @@ namespace ConsoleApp1
                     if (num == 3)
                     {
                         Console.Write("Please Enter Your Id Delet : ");
-                        bool flag = true;
+                        
 
 
                         id = int.Parse(Console.ReadLine());
@@ -61,7 +61,7 @@ namespace ConsoleApp1
 
 
                         Deletdata(conect, id);
-                        flag = false;
+                        
                         break;
 
 
@@ -111,7 +111,9 @@ namespace ConsoleApp1
 
 
             int rowsucces = cmd.ExecuteNonQuery();
-            Console.WriteLine($"One Row {rowsucces}");
+            Console.WriteLine($"{rowsucces} One Row effect ");
+
+            con.Close();
         }
         public static void ReadData(SqlConnection con)
         {
@@ -140,6 +142,7 @@ namespace ConsoleApp1
               
 
             }
+            con.Close();
            
 
         }
@@ -153,7 +156,7 @@ namespace ConsoleApp1
 
             con.Open();
            int x= command.ExecuteNonQuery();
-            con.Close();
+           
             Console.WriteLine($"{x} row effect");
             con.Close();
 
@@ -167,8 +170,8 @@ namespace ConsoleApp1
                 
                     con.Open();
                  var x=  command.ExecuteNonQuery();
-                    con.Close();
             Console.WriteLine($"{x} row effect");
+                    con.Close();
                 
             
 
